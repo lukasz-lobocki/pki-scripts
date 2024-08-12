@@ -1,7 +1,7 @@
 #!/bin/bash 
 # Create a new intermediate
 if [ "$#" -ne 3 ]; then 
-    echo "Usage: $0 ROOT_NAME INT_NAME \"Human Name\""
+    echo "Usage: $0 <ROOT_NAME> <INT_NAME> <\"Human Name\">"
     exit
 fi
 
@@ -26,7 +26,7 @@ generate_key $DIR/$INT_NAME.key
 
 # Copy (and edit!) the intermediate certificate configuration template
 echo "Generating configuration: $DIR/$INT_NAME.conf"
-configure_file templates/int.cfg.tmpl $DIR/$INT_NAME.conf "$HUMAN_NAME"
+configure_file templates/int.conf $DIR/$INT_NAME.conf "$HUMAN_NAME"
 	
 # Generate new CSR
 openssl req -new -config $DIR/$INT_NAME.conf -extensions v3_ca -key $DIR/$INT_NAME.key -out $DIR/$INT_NAME.csr 
