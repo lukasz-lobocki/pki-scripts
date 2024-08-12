@@ -24,7 +24,7 @@ generate_key $DIR/client/$CLIENT_NAME.key
 
 # Copy (and edit!) the intermediate certificate configuration template
 echo "Generating config: $DIR/client/$CLIENT_NAME.conf"
-configure_file templates/client.cfg.tmpl $DIR/client/$CLIENT_NAME.conf $CLIENT_NAME
+configure_file templates/client.conf $DIR/client/$CLIENT_NAME.conf $CLIENT_NAME
 	
 # Generate new CSR
 echo "Generating CSR: $DIR/client/$CLIENT_NAME.csr"

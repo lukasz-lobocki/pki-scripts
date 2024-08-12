@@ -9,12 +9,19 @@ function generate_key {
         return
     fi
 
-    if [ $KEY_TYPE == "rsa" ]; then
+    case "$KEY_TYPE" in
+    rsa)
         openssl genrsa -out $1 $KEY_LEN
-    else
+        ;;
+    ec)
+        openssl ecparam -name $CURVE_NAME -genkey -noout -out $1
+        openssl pkey -in $1 -outform PEM > $1.pem        
+        ;;
+    *)
         echo "ERROR unsupported key type: $KEY_TYPE"
         return
-    fi
+        ;;
+    esac
 
 }
 
@@ -31,6 +38,9 @@ function configure_file {
         -e "s|INT_NAME|$INT_NAME|g" \
         -e "s|COMMON_NAME|$3|g" \
         -e "s|EXPIRY_DAYS|$EXPIRY_DAYS|g" \
+        -e "s|CA_EXPIRY_DAYS|$CA_EXPIRY_DAYS|g" \
+        -e "s|INT_EXPIRY_DAYS|$INT_EXPIRY_DAYS|g" \
+        -e "s|CRL_EXPIRY_DAYS|$CRL_EXPIRY_DAYS|g" \
         -e "s|DIR|$DIR|g" \
         $1 > $2
     else

@@ -2,7 +2,7 @@
 # Load a certificate and key onto a yubikey
 
 if [ "$#" -ne 2 ] && [ "$#" -ne 3 ]; then 
-    echo "Usage: $0 DIR NAME [SLOT]"
+    echo "Usage: $0 <DIR> <NAME> [SLOT]"
     exit
 fi
 
@@ -19,12 +19,12 @@ set -e
 
 # First, load the desired key into slot 9c (note you may wish to set a touch-policy and pin-policy of never for embedded devices)
 echo "Loading key: $DIR/$NAME.key"
-ykman piv import-key $SLOT $DIR/$NAME.key --touch-policy=always --pin-policy=ONCE
+ykman piv keys import $SLOT $DIR/$NAME.key --touch-policy=CACHED --pin-policy=ONCE
 
 
 # Second, load the certificate file into slot 9c
 echo "Loading cert: $DIR/$NAME.crt"
-ykman piv import-certificate $SLOT $DIR/$NAME.crt
+ykman piv certificates import $SLOT $DIR/$NAME.crt
  
 
 # Report new device status
