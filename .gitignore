@@ -11,3 +11,5 @@
 *.csr
 
 test-ca/
+wip/
+temp-ca/
