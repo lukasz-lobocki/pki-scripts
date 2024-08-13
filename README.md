@@ -125,7 +125,7 @@ step certificate inspect absolute-trust-ca-root-y2/absolute-trust-id-x1.crt
 
 Selfsigned with key pregenerated on youbikey. See `-keyform` instead of `-CAkeyform` and `-signkey` instead of `-CAkey`
 ```bash
- OPENSSL_CONF=./temp-ca/temp-ca.conf openssl x509 -engine pkcs11 -keyform engine -signkey "pkcs11:id=%02;type=private;pin-value=97865358" \
+ OPENSSL_CONF=./temp-ca/temp-ca.conf openssl x509 -engine pkcs11 -keyform engine -signkey "pkcs11:id=%02;type=private;pin-value=XXXXX" \
            -sha512 -req -extensions v3_ca -extfile ./temp-ca/temp-ca.conf -days=2 \
            -in ./temp-ca/temp-ca.csr -out ./temp-ca/temp-ca.gwidon
 ```
