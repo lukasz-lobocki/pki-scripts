@@ -32,7 +32,7 @@ generate_key $DIR/$ROOT_NAME.key
 
 # Copy (and edit!) the root certificate configuration template
 echo "Generating configuration: $DIR/$ROOT_NAME.conf"
-configure_file templates/root.conf $DIR/$ROOT_NAME.conf "$HUMAN_NAME"
+configure_file templates/root-new.conf $DIR/$ROOT_NAME.conf "$HUMAN_NAME"
 
 # Generate a Certificate Signing Request (CSR)
 echo "Generating CSR: $DIR/$ROOT_NAME.csr"
